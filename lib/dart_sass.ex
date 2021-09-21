@@ -181,7 +181,7 @@ defmodule DartSass do
 
     {path, args} = sass(args ++ extra_args)
 
-    Logger.error("### {path, args, opts}: #{{path, args, opts}}")
+    Logger.debug("### {path, args, opts}: #{{path, args, opts}}")
 
     path
     |> System.cmd(args, opts)
