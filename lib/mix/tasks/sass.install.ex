@@ -21,15 +21,13 @@ defmodule Mix.Tasks.Sass.Install do
 
   @impl true
   def run(args) do
-    case OptionParser.parse_head!(args, strict: [if_missing: :boolean]) do
+    case OptionParser.parse_head!(args, strict: [if_missing: :boolean, runtime_config: :boolean]) do
       {opts, []} ->
+        if opts[:runtime_config], do: Mix.Task.run("app.config")
+
         if opts[:if_missing] && latest_version?() do
           :ok
         else
-          if Code.ensure_loaded?(Mix.Tasks.App.Config) do
-            Mix.Task.run("app.config")
-          end
-
           DartSass.install()
         end
 
