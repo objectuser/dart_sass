@@ -181,6 +181,8 @@ defmodule DartSass do
 
     {path, args} = sass(args ++ extra_args)
 
+    {path, args, opts} |> IO.inspect(label: "### {path, args, opts}", printable_limit: :infinity)
+
     path
     |> System.cmd(args, opts)
     |> elem(1)
