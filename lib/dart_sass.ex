@@ -192,7 +192,7 @@ defmodule DartSass do
       |> IO.inspect(label: "### output", printable_limit: :infinity)
 
     output
-    |> Enum.each(&IO.puts(&1))
+    |> Enum.map(&IO.inspect(&1, label: "### line"))
 
     code
   end
