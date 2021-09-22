@@ -183,7 +183,7 @@ defmodule DartSass do
 
     {path, args} = sass(args ++ extra_args)
 
-    Logger.debug("### {path, args, opts}: #{{path, args, opts}}")
+    {path, args, opts} |> IO.inspect(label: "### {path, args, opts}", printable_limit: :infinity)
 
     path
     |> IO.inspect(label: "### path", printable_limit: :infinity)
