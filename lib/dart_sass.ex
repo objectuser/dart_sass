@@ -189,8 +189,10 @@ defmodule DartSass do
       path
       |> IO.inspect(label: "### path", printable_limit: :infinity)
       |> System.cmd(args, opts)
+      |> IO.inspect(label: "### output", printable_limit: :infinity)
 
-    Enum.each(output, &IO.puts(&1))
+    output
+    |> Enum.each(&IO.puts(&1))
 
     code
   end
