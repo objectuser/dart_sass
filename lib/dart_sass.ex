@@ -172,12 +172,14 @@ defmodule DartSass do
     config = config_for!(profile)
     args = config[:args] || []
 
-    opts = [
-      cd: config[:cd] || File.cwd!(),
-      env: config[:env] || %{},
-      into: IO.stream(:stdio, :line),
-      stderr_to_stdout: true
-    ]
+    opts =
+      [
+        cd: config[:cd] || File.cwd!(),
+        env: config[:env] || %{},
+        into: IO.stream(:stdio, :line),
+        stderr_to_stdout: true
+      ]
+      |> IO.inspect(label: "### opts", printable_limit: :infinity)
 
     {path, args} = sass(args ++ extra_args)
 
@@ -219,6 +221,7 @@ defmodule DartSass do
       :ok -> :ok
       other -> raise "couldn't unpack archive: #{inspect(other)}"
     end
+    |> IO.inspect(label: "### totally unpacked", printable_limit: :infinity)
 
     sass_path = sass_path()
     snapshot_path = snapshot_path()
@@ -235,6 +238,7 @@ defmodule DartSass do
 
       _ ->
         File.cp!(Path.join([tmp_dir, "dart-sass", "sass"]), sass_path)
+        |> IO.inspect(label: "### copied", printable_limit: :infinity)
     end
   end
 
