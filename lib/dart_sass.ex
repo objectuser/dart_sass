@@ -188,6 +188,7 @@ defmodule DartSass do
     path
     |> IO.inspect(label: "### path", printable_limit: :infinity)
     |> System.cmd(args, opts)
+    |> IO.inspect(label: "### cmd result", printable_limit: :infinity)
     |> elem(1)
   end
 
