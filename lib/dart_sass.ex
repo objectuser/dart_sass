@@ -184,6 +184,7 @@ defmodule DartSass do
     Logger.debug("### {path, args, opts}: #{{path, args, opts}}")
 
     path
+    |> IO.inspect(label: "### path", printable_limit: :infinity)
     |> System.cmd(args, opts)
     |> elem(1)
   end
