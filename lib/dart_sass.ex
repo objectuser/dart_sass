@@ -274,7 +274,7 @@ defmodule DartSass do
 
   defp fetch_body!(url) do
     url = String.to_charlist(url)
-    Logger.debug("Downloading dart-sass from #{url}")
+    Logger.debug("Downloading (yay) dart-sass from #{url}")
 
     {:ok, _} = Application.ensure_all_started(:inets)
     {:ok, _} = Application.ensure_all_started(:ssl)
