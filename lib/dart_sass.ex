@@ -185,11 +185,14 @@ defmodule DartSass do
 
     {path, args, opts} |> IO.inspect(label: "### {path, args, opts}", printable_limit: :infinity)
 
-    path
-    |> IO.inspect(label: "### path", printable_limit: :infinity)
-    |> System.cmd(args, opts)
-    |> IO.inspect(label: "### cmd result", printable_limit: :infinity)
-    |> elem(1)
+    {output, code} =
+      path
+      |> IO.inspect(label: "### path", printable_limit: :infinity)
+      |> System.cmd(args, opts)
+
+    Enum.each(output, &IO.write(&1))
+
+    code
   end
 
   @doc """
