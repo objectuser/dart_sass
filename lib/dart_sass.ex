@@ -190,7 +190,7 @@ defmodule DartSass do
       |> IO.inspect(label: "### path", printable_limit: :infinity)
       |> System.cmd(args, opts)
 
-    Enum.each(output, &IO.write(&1))
+    Enum.each(output, &IO.puts(&1))
 
     code
   end
